@@ -2,9 +2,10 @@
   class="checkbox"
   type="checkbox"
   name="comprado"
+  (change)="editaValorCompra()"
   [checked]="item.comprado"
   id="comprado">
-<p class="description">{{ item.nome }}</p>
+<p [class.line-through] class="description">{{ item.nome }}</p>
 <div  class="d-contents">
   <fa-icon class="delete-icon"  [icon]="faTrash" ></fa-icon>
   <fa-icon

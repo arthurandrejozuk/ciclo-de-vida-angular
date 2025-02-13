@@ -9,12 +9,15 @@ import { Item } from 'src/app/interfaces/iItem';
 })
 export class ItemComponent implements OnInit, OnChanges {
 
+
   faPen = faPen;
   faTrash = faTrash;
 
+  // emite uma variavel pra item no componente pai
   @Input()
   item!: Item
 
+  // emite uma função para o item, permitindo pegar a função do componente pai 
   @Output()
   emitindoItemParaEditar = new EventEmitter();
 
@@ -25,6 +28,16 @@ export class ItemComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     console.log('OnInit')
+  }
+
+  editaValorCompra() {
+    // muda o valor do atributo de compra
+    console.log('troca')
+    if(this.item.comprado == true){
+      this.item.comprado = false;
+    } else {
+      this.item.comprado = true;
+    }
   }
 
   editarItem() {

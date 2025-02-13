@@ -11,19 +11,22 @@ export class InputComponent implements OnInit, OnChanges {
 
   @Input() itemParaEditar!:Item
 
+  // Caso 
   editando = false;
   textoBtn = 'Salvar item';
 
   valorItem!: string;
 
-
+  // Adiciona service de listaDeCompras
   constructor(private service: ListaDeCompraService) { }
 
+  // Cria uma lista com um nome e o serviço faz um valor padrão para os demais itens
   adicionarItem() {
     this.service.adicionarItemNaLista(this.valorItem);
     this.limparCampo()
   }
 
+  // 
   editarItem() {
     this.service.editarItem(this.itemParaEditar, this.valorItem)
     this.limparCampo()

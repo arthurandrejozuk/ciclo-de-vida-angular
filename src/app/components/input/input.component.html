@@ -1,4 +1,9 @@
+
+
+
+<!-- Modifica o textoBtn e além de mudar suas funções de adicionar item, que tem uma regra diferente, ou editar -->
 <form (ngSubmit)="editando ? editarItem() : adicionarItem()" class="add-item">
+  <!-- Espera o novo valor pelo input-->
   <input [(ngModel)]="valorItem" type="text" name="item" placeholder="Digite o item que deseja adicionar">
   <button type="submit">{{ textoBtn }}</button>
 </form>
