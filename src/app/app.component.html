@@ -3,10 +3,15 @@
   </app-input>
   <div class="container">
     <div class="lista">
-      <h4 class="title-list">Lista de Compras</h4>
+      <div class="header-lista">
+        <button class="btn-header" (click)="limparLista()">
+          limparLista
+        </button>
+        <h4 class="title-list">Lista de Compras</h4>
+      </div>
       <div *ngIf="listaCompras.length != 0; else naoTemItem" >
         <div *ngFor="let compra of listaCompras">
-          <app-item [item]="compra" (emitindoItemParaEditar)="editarItem($event)"></app-item>
+          <app-item [item]="compra" (emitindoIdParaDeletar)="deletarItem($event)" (emitindoItemParaEditar)="editarItem($event)"></app-item>
         </div>
       </div>
       <ng-template #naoTemItem>

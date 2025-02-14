@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Item } from 'src/app/interfaces/iItem';
 
@@ -7,7 +7,7 @@ import { Item } from 'src/app/interfaces/iItem';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit, OnChanges {
+export class ItemComponent implements OnInit, OnChanges, OnDestroy {
 
 
   faPen = faPen;
@@ -17,9 +17,12 @@ export class ItemComponent implements OnInit, OnChanges {
   @Input()
   item!: Item
 
-  // emite uma função para o item, permitindo pegar a função do componente pai 
+  // emite uma função para o item, permitindo pegar a função do componente pai
   @Output()
   emitindoItemParaEditar = new EventEmitter();
+
+  @Output()
+  emitindoIdParaDeletar = new EventEmitter();
 
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
@@ -42,6 +45,15 @@ export class ItemComponent implements OnInit, OnChanges {
 
   editarItem() {
     this.emitindoItemParaEditar.emit(this.item);
+  }
+
+  deletarItem() {
+    this.emitindoIdParaDeletar.emit(this.item.id);
+    console.log("Deletando");
+  }
+
+  ngOnDestroy(): void {
+      console.log("Conseguiram me calar")
   }
 
 }

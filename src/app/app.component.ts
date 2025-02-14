@@ -8,6 +8,7 @@ import { Item } from './interfaces/iItem';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, DoCheck {
+
   title = 'app-lista-de-compras';
 
   listaCompras: Array<Item> = []
@@ -31,5 +32,14 @@ export class AppComponent implements OnInit, DoCheck {
   editarItem(item: Item) {
     this.itemParaSerEditado = item;
   }
+
+  deletarItem(id: number) {
+    const item = this.listaCompras.findIndex((item) => item.id == id)
+    this.listaCompras.splice(item, 1);
+  }
+  limparLista() {
+    this.listaCompras = []
+  }
+
 
 }
